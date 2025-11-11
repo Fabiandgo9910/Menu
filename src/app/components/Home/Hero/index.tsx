@@ -40,7 +40,7 @@ const Hero = () => {
               </p> */}
             </div>
             <Image
-              className=' rounded-4xl'
+              className=' rounded-4xl mt-10'
               src='/images/logo/unnamed.webp'
               alt='nothing'
               width={1000}

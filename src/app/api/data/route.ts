@@ -70,12 +70,12 @@ const ExpertChiefData: ExpertChiefType[] = [
 ]
 
 
-export type GalleryCategoryType = {
+type GalleryCategoryType = {
   title: string
   items: GalleryImagesType[]
 }
 
-export const GalleryImagesData: GalleryCategoryType[] = [
+const GalleryImagesData: GalleryCategoryType[] = [
   {
     title: 'Entrantes',
     items: [
@@ -299,6 +299,7 @@ const FooterLinkData: FooterLinkType[] = [
   },
 ]
 
+
 export const GET = () => {
   return NextResponse.json({
     HeaderData,
@@ -309,3 +310,4 @@ export const GET = () => {
     FooterLinkData,
   })
 }
+
