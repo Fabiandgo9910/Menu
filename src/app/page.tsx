@@ -8,7 +8,7 @@ import Newsletter from '@/app/components/Home/Newsletter'
 import { Metadata } from 'next'
 import ContactForm from './components/Contact/Form'
 export const metadata: Metadata = {
-  title: "Jenkin's - Restaurante y Café",
+  title: "Jenkin's - Restaurante",
   description: "Disfruta de los mejores platos, bebidas y postres en Jenkin's. Menú para compartir, ensaladas frescas, hamburguesas, carnes y postres irresistibles.",
   keywords: [
     "restaurante", "café", "comida", "hamburguesas", "ensaladas",
