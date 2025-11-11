@@ -77,55 +77,59 @@ type GalleryCategoryType = {
 
 const GalleryImagesData: GalleryCategoryType[] = [
   {
-    title: 'Entrantes',
+    title: 'Starters',
     items: [
       {
-        src: '/images/Gallery/foodone.webp',
-        name: 'Caesar Salad (187 Kcal)',
+        src: '/images/menu/Starters/alitas.webp',
+        name: 'Alitas a la Brasa',
         price: 35,
         ingredients: [
-          'Lechuga romana',
-          'Pollo a la parrilla',
-          'Queso parmesano',
-          'Crutones',
-          'Salsa César',
-        ],
-        contains: ['Lácteos', 'Gluten', 'Huevo'],
-      },
-      {
-        src: '/images/Gallery/foodtwo.webp',
-        name: 'Christmas Salad (118 Kcal)',
-        price: 17,
-        ingredients: [
-          'Espinaca',
-          'Granada',
-          'Nueces',
-          'Queso de cabra',
-          'Vinagreta balsámica',
-        ],
-        contains: ['Frutos secos', 'Lácteos'],
-      },
-      {
-        src: '/images/Gallery/foodone.webp',
-        name: 'Caesar Salad (187 Kcal)',
-        price: 35,
-        ingredients: [
-          'Lechuga romana',
-          'Pollo a la parrilla',
-          'Queso parmesano',
-          'Crutones',
-          'Salsa César',
+          '4 jugosas alitas de pollo de corral xl',
+          'Cosinadas a baja temperatura y terminadas en el horno de carbon Josper',
+          'Elije tu salsa favorita',
         ],
         contains: ['Lácteos', 'Gluten', 'Huevo'],
       },
     ],
   },
   {
+    title: 'Perfect to Share',
+    items: [
+      {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      },
+    ],
+  },
+  {
+    title: 'One by One',
+    items: [
+      {
+        src: '/images/Menu/One by One/croquetas1.webp',
+        name: 'Croquetas de rabo de toro',
+        price: 42,
+        ingredients: ['Elaboradas a partir de estofado de rabo de toro casero', 'Acompañadas de mayonesa de trufa negra'],
+        contains: [],
+      },
+    ],
+  },
+  {
+    title: 'Fries',
+    items: [
+      // Aquí puedes agregar tus papas fritas cuando las tengas
+    ],
+  },
+  {
     title: 'Burgers',
     items: [
       {
-        src: '/images/Logo/unnamed.webp',
-        name: 'Classic Burger (540 Kcal)',
+        src: '/images/Menu/Burgers/pollo crunch.webp',
+        name: 'Pollo Crunch',
         price: 22,
         ingredients: [
           'Pan artesanal',
@@ -153,7 +157,7 @@ const GalleryImagesData: GalleryCategoryType[] = [
     ],
   },
   {
-    title: 'Steaks',
+    title: 'The genuines',
     items: [
       {
         src: '/images/Gallery/steak1.webp',
@@ -167,36 +171,22 @@ const GalleryImagesData: GalleryCategoryType[] = [
         ],
         contains: ['Lácteos'],
       },
-      {
-        src: '/images/Gallery/steak2.webp',
-        name: 'Filete de ternera (280g)',
-        price: 42,
-        ingredients: ['Filete de ternera', 'Aceite de oliva', 'Romero fresco'],
-        contains: [],
-      },
     ],
   },
   {
-    title: 'Bebidas',
+    title: 'The biggest ones',
     items: [
-      {
-        src: '/images/Gallery/drink1.webp',
-        name: 'Limonada natural',
-        price: 6,
-        ingredients: ['Limón', 'Agua', 'Miel'],
-        contains: [],
-      },
-      {
-        src: '/images/Gallery/drink2.webp',
-        name: 'Té helado con menta',
-        price: 5,
-        ingredients: ['Té negro', 'Menta', 'Hielo', 'Azúcar moreno'],
-        contains: [],
-      },
+      // Aquí puedes agregar los platos grandes (puede ser steaks o combos)
     ],
   },
   {
-    title: 'Postres',
+    title: 'Brasas',
+    items: [
+      // Aquí puedes agregar parrilladas, carnes a la brasa
+    ],
+  },
+  {
+    title: 'Hall of fame',
     items: [
       {
         src: '/images/Gallery/dessert1.webp',
@@ -215,8 +205,59 @@ const GalleryImagesData: GalleryCategoryType[] = [
     ],
   },
   {
-    title: 'Cafés',
+    title: 'Menu infantil',
     items: [
+      // Platos para niños
+    ],
+  },
+  {
+    title: 'Ensaladas',
+    items: [
+      {
+        src: '/images/Gallery/foodone.webp',
+        name: 'Caesar Salad (187 Kcal)',
+        price: 35,
+        ingredients: [
+          'Lechuga romana',
+          'Pollo a la parrilla',
+          'Queso parmesano',
+          'Crutones',
+          'Salsa César',
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      },
+      {
+        src: '/images/Gallery/foodtwo.webp',
+        name: 'Christmas Salad (118 Kcal)',
+        price: 17,
+        ingredients: [
+          'Espinaca',
+          'Granada',
+          'Nueces',
+          'Queso de cabra',
+          'Vinagreta balsámica',
+        ],
+        contains: ['Frutos secos', 'Lácteos'],
+      },
+    ],
+  },
+  {
+    title: 'Extras',
+    items: [
+      {
+        src: '/images/Gallery/drink1.webp',
+        name: 'Limonada natural',
+        price: 6,
+        ingredients: ['Limón', 'Agua', 'Miel'],
+        contains: [],
+      },
+      {
+        src: '/images/Gallery/drink2.webp',
+        name: 'Té helado con menta',
+        price: 5,
+        ingredients: ['Té negro', 'Menta', 'Hielo', 'Azúcar moreno'],
+        contains: [],
+      },
       {
         src: '/images/Gallery/coffee1.webp',
         name: 'Café espresso',
@@ -230,6 +271,18 @@ const GalleryImagesData: GalleryCategoryType[] = [
         price: 4.5,
         ingredients: ['Café espresso', 'Leche vaporizada', 'Espuma de leche'],
         contains: ['Lácteos'],
+      },
+    ],
+  },
+  {
+    title: 'Postres',
+    items: [
+      {
+        src: '/images/Menu/Postres/brownie.webp',
+        name: 'Brownie',
+        price: 42,
+        ingredients: [''],
+        contains: [],
       },
     ],
   },

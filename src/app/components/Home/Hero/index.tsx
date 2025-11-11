@@ -41,7 +41,7 @@ const Hero = () => {
             </div>
             <Image
               className=' rounded-4xl mt-10'
-              src='/images/logo/unnamed.webp'
+              src='/images/Promo/promo.webp'
               alt='nothing'
               width={1000}
               height={805}

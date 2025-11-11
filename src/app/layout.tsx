@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className={`${font.className} bg-black`}>
         <Header />
         {children}
-        <Footer />
+        {/* <Footer /> */}
         <ScrollToTop />
       </body>
     </html>
