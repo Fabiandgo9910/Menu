@@ -80,7 +80,7 @@ const GalleryImagesData: GalleryCategoryType[] = [
     title: 'Starters',
     items: [
       {
-        src: '/images/menu/Starters/alitas.webp',
+        src: '/images/Menu/Starters/alitas.webp',
         name: 'Alitas a la Brasa',
         price: 35,
         ingredients: [
@@ -95,6 +95,24 @@ const GalleryImagesData: GalleryCategoryType[] = [
   {
     title: 'Perfect to Share',
     items: [
+      {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      },
+      {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      },
       {
         src: '/images/Menu/Perfect to Share/aros.webp',
         name: 'Onions Jenkins',
@@ -121,7 +139,55 @@ const GalleryImagesData: GalleryCategoryType[] = [
   {
     title: 'Fries',
     items: [
-      // Aquí puedes agregar tus papas fritas cuando las tengas
+      {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      }, {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      }, {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      }, {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      }, {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      }, {
+        src: '/images/Menu/Perfect to Share/aros.webp',
+        name: 'Onions Jenkins',
+        price: 35,
+        ingredients: [
+          'Crujientes aros de cebolla rebozados en pankos japonés '
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      },
     ],
   },
   {
@@ -142,7 +208,7 @@ const GalleryImagesData: GalleryCategoryType[] = [
         contains: ['Gluten', 'Lácteos'],
       },
       {
-        src: '/images/Gallery/burger2.webp',
+        src: '/images/Menu/Burgers/pollo crunch.webp',
         name: 'BBQ Bacon Burger (610 Kcal)',
         price: 25,
         ingredients: [
@@ -160,7 +226,18 @@ const GalleryImagesData: GalleryCategoryType[] = [
     title: 'The genuines',
     items: [
       {
-        src: '/images/Gallery/steak1.webp',
+        src: '/images/Menu/Starters/alitas.webp',
+        name: 'Alitas a la Brasa',
+        price: 35,
+        ingredients: [
+          '4 jugosas alitas de pollo de corral xl',
+          'Cosinadas a baja temperatura y terminadas en el horno de carbon Josper',
+          'Elije tu salsa favorita',
+        ],
+        contains: ['Lácteos', 'Gluten', 'Huevo'],
+      },
+      {
+        src: '/images/Menu/Starters/alitas.webp',
         name: 'Ribeye Steak (350g)',
         price: 48,
         ingredients: [
@@ -176,13 +253,57 @@ const GalleryImagesData: GalleryCategoryType[] = [
   {
     title: 'The biggest ones',
     items: [
-      // Aquí puedes agregar los platos grandes (puede ser steaks o combos)
+      {
+        src: '/images/Menu/Starters/alitas.webp',
+        name: 'Ribeye Steak (350g)',
+        price: 48,
+        ingredients: [
+          'Ribeye a la parrilla',
+          'Sal marina',
+          'Pimienta negra',
+          'Mantequilla de hierbas',
+        ],
+        contains: ['Lácteos'],
+      }, {
+        src: '/images/Menu/Starters/alitas.webp',
+        name: 'Ribeye Steak (350g)',
+        price: 48,
+        ingredients: [
+          'Ribeye a la parrilla',
+          'Sal marina',
+          'Pimienta negra',
+          'Mantequilla de hierbas',
+        ],
+        contains: ['Lácteos'],
+      },
     ],
   },
   {
     title: 'Brasas',
     items: [
-      // Aquí puedes agregar parrilladas, carnes a la brasa
+      {
+        src: '/images/Menu/Starters/alitas.webp',
+        name: 'Ribeye Steak (350g)',
+        price: 48,
+        ingredients: [
+          'Ribeye a la parrilla',
+          'Sal marina',
+          'Pimienta negra',
+          'Mantequilla de hierbas',
+        ],
+        contains: ['Lácteos'],
+      }, {
+        src: '/images/Menu/Starters/alitas.webp',
+        name: 'Ribeye Steak (350g)',
+        price: 48,
+        ingredients: [
+          'Ribeye a la parrilla',
+          'Sal marina',
+          'Pimienta negra',
+          'Mantequilla de hierbas',
+        ],
+        contains: ['Lácteos'],
+      },
     ],
   },
   {
@@ -207,7 +328,18 @@ const GalleryImagesData: GalleryCategoryType[] = [
   {
     title: 'Menu infantil',
     items: [
-      // Platos para niños
+      {
+        src: '/images/Menu/Starters/alitas.webp',
+        name: 'Ribeye Steak (350g)',
+        price: 48,
+        ingredients: [
+          'Ribeye a la parrilla',
+          'Sal marina',
+          'Pimienta negra',
+          'Mantequilla de hierbas',
+        ],
+        contains: ['Lácteos'],
+      },
     ],
   },
   {

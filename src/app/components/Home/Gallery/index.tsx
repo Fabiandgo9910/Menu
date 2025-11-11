@@ -14,6 +14,7 @@ type GalleryCategoryType = {
   items: GalleryImagesType[]
 }
 
+
 const Gallery = () => {
   const [galleryCategories, setGalleryCategories] = useState<GalleryCategoryType[]>([])
   const [fullMenu, setFullMenu] = useState<FullMenuType[]>([])
