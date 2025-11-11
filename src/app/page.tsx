@@ -8,7 +8,10 @@ import Newsletter from '@/app/components/Home/Newsletter'
 import { Metadata } from 'next'
 import ContactForm from './components/Contact/Form'
 export const metadata: Metadata = {
-  title: 'Kitchen',
+  title: `Jenkin's`,
+  icons: {
+  icon: '/favicon.ico',
+  },
 }
 
 export default function Home() {
