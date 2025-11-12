@@ -2,24 +2,26 @@
 import Image from 'next/image'
 import Masonry from 'react-masonry-css'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import GalleryImagesSkeleton from '../../Skeleton/GalleryImages'
 import { Icon } from '@iconify/react'
 import { GalleryImagesType } from '@/app/types/galleryimage'
 import { FullMenuType } from '@/app/types/fullmenu'
 
-// Nuevo tipo para categorías
 type GalleryCategoryType = {
   title: string
   items: GalleryImagesType[]
 }
-
 
 const Gallery = () => {
   const [galleryCategories, setGalleryCategories] = useState<GalleryCategoryType[]>([])
   const [fullMenu, setFullMenu] = useState<FullMenuType[]>([])
   const [loading, setLoading] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const categoryRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
   const openMenu = () => setIsMenuOpen(true)
   const closeMenu = () => setIsMenuOpen(false)
@@ -30,8 +32,6 @@ const Gallery = () => {
         const res = await fetch('/api/data')
         if (!res.ok) throw new Error('Failed to fetch')
         const data = await res.json()
-
-        // Adaptar a la nueva estructura
         setGalleryCategories(data.GalleryImagesData)
         setFullMenu(data.FullMenuData)
       } catch (error) {
@@ -43,29 +43,132 @@ const Gallery = () => {
     fetchData()
   }, [])
 
+  // 🧠 Calcular distancia de similitud (permite errores ortográficos)
+  const levenshteinDistance = (a: string, b: string): number => {
+    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i])
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b[i - 1] === a[j - 1]) {
+          matrix[i][j] = matrix[i - 1][j - 1]
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1, // sustitución
+            matrix[i][j - 1] + 1,     // inserción
+            matrix[i - 1][j] + 1      // eliminación
+          )
+        }
+      }
+    }
+    return matrix[b.length][a.length]
+  }
+
+  const similar = (str: string, query: string) => {
+    const distance = levenshteinDistance(str, query)
+    return distance <= Math.ceil(query.length / 3)
+  }
+
+  // 🔍 Filtro combinado (categorías + búsqueda flexible)
+  const filteredCategories = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase()
+
+    let categories =
+      selectedCategories.length > 0
+        ? galleryCategories.filter(cat => selectedCategories.includes(cat.title))
+        : galleryCategories
+
+    if (!query) return categories
+
+    return categories
+      .map(cat => ({
+        ...cat,
+        items: cat.items.filter(item => {
+          const name = item.name.toLowerCase()
+          const ingredients = item.ingredients?.join(' ').toLowerCase() || ''
+          const contains = item.contains?.join(' ').toLowerCase() || ''
+          return (
+            name.includes(query) ||
+            ingredients.includes(query) ||
+            contains.includes(query) ||
+            similar(name, query)
+          )
+        }),
+      }))
+      .filter(cat => cat.items.length > 0)
+  }, [galleryCategories, selectedCategories, searchQuery])
+
+  const toggleCategory = (title: string) => {
+    setSelectedCategories(prev =>
+      prev.includes(title)
+        ? prev.filter(t => t !== title)
+        : [...prev, title]
+    )
+    const element = categoryRefs.current[title]
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <section id='menu' className='scroll-mt-20'>
       <div className='container'>
         {/* Encabezado */}
-        <div className='text-center'>
+        <div className='text-center mb-10'>
           <p className='text-primary text-lg font-normal mb-3 tracking-widest uppercase'>
             Menú
           </p>
           <h2 className='text-white'>Nuestra Carta</h2>
         </div>
 
-        {/* Secciones del Menú */}
+        {/* 🔍 Barra de búsqueda */}
+        <div className='flex justify-center mb-8'>
+          <input
+            type='text'
+            placeholder='Buscar plato, ingrediente o similar...'
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className='w-full max-w-md px-4 py-2 rounded-full bg-neutral-800 text-white border border-gray-600 focus:outline-none focus:border-primary placeholder-gray-400'
+          />
+        </div>
+
+        {/* 🧩 Filtros de categorías */}
+        {!loading && (
+          <div className='flex flex-wrap justify-center gap-3 mb-10'>
+            {galleryCategories.map(cat => (
+              <button
+                key={cat.title}
+                onClick={() => toggleCategory(cat.title)}
+                className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors duration-300 ${selectedCategories.includes(cat.title)
+                    ? 'bg-primary text-white border-primary'
+                    : 'border-gray-500 text-gray-300 hover:bg-primary/20'
+                  }`}>
+                {cat.title}
+              </button>
+            ))}
+            {selectedCategories.length > 0 && (
+              <button
+                onClick={() => setSelectedCategories([])}
+                className='px-4 py-2 rounded-full border border-red-400 text-red-400 text-sm hover:bg-red-400 hover:text-white transition'>
+                Limpiar filtros
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* 📦 Secciones del Menú */}
         <div className='my-16 px-6 space-y-20'>
-          {loading
-            ? (
-              <div className='flex flex-wrap gap-8 justify-center'>
-                {Array.from({ length: 9 }).map((_, i) => (
-                  <GalleryImagesSkeleton key={i} />
-                ))}
-              </div>
-            )
-            : galleryCategories.map((category, idx) => (
-              <div key={idx}>
+          {loading ? (
+            <div className='flex flex-wrap gap-8 justify-center'>
+              {Array.from({ length: 9 }).map((_, i) => (
+                <GalleryImagesSkeleton key={i} />
+              ))}
+            </div>
+          ) : (
+            filteredCategories.map((category, idx) => (
+              <div
+                key={idx}
+                ref={el => { categoryRefs.current[category.title] = el; }}
+              >
                 <h3 className='text-3xl font-semibold text-primary mb-8 text-center'>
                   {category.title}
                 </h3>
@@ -86,32 +189,24 @@ const Gallery = () => {
                           className='object-cover object-center transition-transform duration-700 group-hover:scale-105'
                           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                         />
-                        {/* Overlay */}
                         <div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out p-6 flex flex-col justify-end text-white'>
                           <div className='space-y-2'>
                             <p className='text-lg md:text-xl font-semibold'>
                               {item.name}
                             </p>
-
-                            {item.ingredients && item.ingredients.length > 0 && (
+                            {item.ingredients?.length > 0 && (
                               <p className='text-sm text-gray-200 leading-snug'>
-                                <span className='font-semibold text-primary'>
-                                  Ingredientes:
-                                </span>{' '}
+                                <span className='font-semibold text-primary'>Ingredientes:</span>{' '}
                                 {item.ingredients.join(', ')}
                               </p>
                             )}
-
-                            {item.contains && item.contains.length > 0 && (
+                            {item.contains?.length > 0 && (
                               <p className='text-sm text-gray-300 leading-snug'>
-                                <span className='font-semibold text-red-400'>
-                                  Contiene:
-                                </span>{' '}
+                                <span className='font-semibold text-red-400'>Contiene:</span>{' '}
                                 {item.contains.join(', ')}
                               </p>
                             )}
                           </div>
-
                           <div className='flex items-center justify-between mt-4'>
                             <p className='text-xl font-medium'>{item.price} €</p>
                             <Link
@@ -126,10 +221,11 @@ const Gallery = () => {
                   ))}
                 </Masonry>
               </div>
-            ))}
+            ))
+          )}
         </div>
 
-        {/* Pop-up del menú completo */}
+        {/* 📜 Pop-up del menú completo */}
         {isMenuOpen && (
           <div
             className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50 px-4'
