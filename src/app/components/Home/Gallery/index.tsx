@@ -24,6 +24,7 @@ const Gallery = () => {
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [filtering, setFiltering] = useState(false)
+  const [expandedImage, setExpandedImage] = useState<string | null>(null) // Estado para la imagen ampliada
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,6 +98,14 @@ const Gallery = () => {
     setSelectedCategories([])
     setSelectedSubcategories([])
     setSearchQuery('')
+  }
+
+  const handleImageClick = (src: string) => {
+    setExpandedImage(src) // Establecer la imagen ampliada al hacer clic
+  }
+
+  const closeExpandedImage = () => {
+    setExpandedImage(null) // Cerrar la imagen ampliada
   }
 
   return (
@@ -187,15 +196,15 @@ const Gallery = () => {
                       columnClassName='masonry-column'
                     >
                       {subcategory.items.map((item, index) => (
-                        <div key={index} className='relative overflow-hidden rounded-3xl mb-8 group shadow-lg hover:scale-[1.02] transition'>
-                          <div className='relative w-full h-[380px]'>
+                        <div key={index} className='relative overflow-hidden rounded-3xl mb-8 group shadow-lg transition'>
+                          <div className='relative w-full h-[380px] cursor-pointer' onClick={() => handleImageClick(item.src)}>
                             <Image
                               src={item.src}
                               alt={item.name}
                               fill
-                              className='object-cover group-hover:scale-105 transition'
+                              className='object-cover transition'
                             />
-                            <div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition p-6 flex flex-col justify-end'>
+                            <div className='absolute inset-0 bg-black/70 p-6 flex flex-col justify-end'>
                               <p className='text-xl font-semibold text-white'>{item.name}</p>
                               {item.ingredients?.length > 0 && (
                                 <p className='text-sm text-gray-200'>
@@ -225,6 +234,19 @@ const Gallery = () => {
             </div>
           )}
         </div>
+
+        {/* Modal para la imagen ampliada */}
+        {expandedImage && (
+          <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50' onClick={closeExpandedImage}>
+            <Image
+              src={expandedImage}
+              alt='Imagen ampliada'
+              width={800}
+              height={600}
+              className='max-w-full max-h-full object-contain'
+            />
+          </div>
+        )}
       </div>
     </section>
   )
