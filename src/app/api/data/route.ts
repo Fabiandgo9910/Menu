@@ -6,7 +6,7 @@ import { ExpertChiefType } from '@/app/types/expertchief'
 import { GalleryImagesType } from '@/app/types/galleryimage'
 import { FooterLinkType } from '@/app/types/footerlink'
 import { FullMenuType } from '@/app/types/fullmenu'
-import { GalleryImagesData } from './galllery'
+import { GalleryImagesData } from './gallery'
 
 const HeaderData: HeaderItem[] = [
   { label: 'About Us', href: '/#aboutus' },

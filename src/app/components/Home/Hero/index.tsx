@@ -28,16 +28,30 @@ const Hero = () => {
             </div>
           </div>
           <div className='lg:col-span-6 flex justify-center relative'>
-            <div className='flex bg-white p-2 gap-5 items-center bottom-10 left-10 rounded-xl absolute'>
-              {/* <Image
-                src={'/images/hero/pizza.webp'}
-                alt='pizza-image'
-                width={68}
-                height={68}
-              />
-              <p className='text-lg font-normal'>
-                Over 50+ <br /> signature dishes
-              </p> */}
+            <div className='flex p-2 gap-5 items-center bottom-10 left-10 rounded-xl absolute'>
+              <div className="relative flex items-center gap-4 bg-gradient-to-r from-primary/80 via-primary to-primary/90 text-white rounded-2xl shadow-lg px-5 py-3 hover:scale-105 transition-transform duration-300 ease-out backdrop-blur-md">
+                <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden border-2 border-white/80 shadow-md">
+                  <Image
+                    src='https://images.unsplash.com/photo-1550547660-d9450f859349'
+                    alt="pizza-image"
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
+                </div>
+
+                <div className="flex flex-col leading-tight">
+                  <p className="text-xs uppercase tracking-widest text-yellow-300 font-semibold animate-pulse">
+                    Alerta
+                  </p>
+                  <p className="text-lg md:text-xl font-bold text-white drop-shadow-md">
+                    ¡ Burger del Mes !
+                  </p>
+                </div>
+
+                {/* 🔥 Glow decorativo animado */}
+                <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full animate-ping"></div>
+              </div>
             </div>
             <Image
               className=' rounded-4xl mt-10'
